@@ -1,11 +1,10 @@
-be-as is a bash script. It is a toy implementation of Ben Eater's assembly
-language for his 8-bit computer. It requires one file name as an argument.
-Sorry, it doesn't read stdin. It's output is binary data on stdout so please
-beware. It's output is intended to be loaded directly into the computer's
-memory module. One way to do that it using Arduino as a loader with the
-included ino file. With that file loaded into an Arduino Uno compatible unit,
-the output of be-as can be redirected to a serial port connected to the unit
-which will load the data into the computer.
+be-as is a pure bash script. It is a toy implementation of Ben Eater's assembly
+language for his 8-bit computer. It accepts one file name as an argument.
+It's output is binary on stdout so please beware. It's output is intended to be
+loaded directly into the computer's memory module. One way to do that it using
+Arduino as a loader with the included ino file. With that file loaded into an
+Arduino Uno compatible unit, the output of be-as can be redirected to a serial
+port connected to the unit which will load the data into the computer.
 
 Arduino interface:
 A5 - write signal
@@ -17,6 +16,6 @@ changed in the ino file by the FLASH_TIME and INTERVAL macros.
 
 A mock example https://youtu.be/EJC_lP2RdXE
 
-USE AT YOUR OWN RISK. Please examine the source code. This is just a toy
-project that I did for fun as fast as I could in some spare time. There are
-almost no checks for errors or data integrity.
+USE AT YOUR OWN RISK. Please examine the source code. This is just a toy that
+I did for fun as fast as I could. There are almost no checks for errors or data
+integrity.
