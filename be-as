@@ -27,7 +27,7 @@ in="${1:-/dev/stdin}"
 addr=0
 while read line ; do
   if [[ "$line" =~ : ]] ; then
-    if [[ "$line" =~ [[:space:]]*$noarg: ]] ; then
+    if [[ "$line" =~ ^[[:space:]]*$noarg: ]] ; then
       builtin echo "can't use $noarg as a symbol :\\" >&2
       exit 1
     fi
