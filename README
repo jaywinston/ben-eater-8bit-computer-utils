@@ -7,7 +7,7 @@ Arduino Uno compatible unit, the output of be-as can be redirected to a serial
 port connected to the unit which will load the data into the computer.
 
 Arduino interface:
-A5 - write signal
+A4 - write signal
 2,3,4,5 - address lines, LSB pin 2
 6,7,8,9,10,11,12,13,14,15 - data lines, LSB pin 6
 
