@@ -2,10 +2,8 @@
 
 # be-as: POC (no data validation) assembler for Ben Eater's 8-bit computer
 
-noarg=___
-
 # label => "name:"
-declare -A syms=( [$noarg]= ) OPS=(
+declare -A syms=( [ ]= ) OPS=(
   [NOP]=0
   [LDA]=1
   [ADD]=2
@@ -27,10 +25,6 @@ in="${1:-/dev/stdin}"
 addr=0
 while read line ; do
   if [[ "$line" =~ : ]] ; then
-    if [[ "$line" =~ ^[[:space:]]*$noarg: ]] ; then
-      builtin echo "can't use $noarg as a symbol :\\" >&2
-      exit 1
-    fi
     toks=( $line )  # this should be a function for a uniform API, see below
     sym=${toks[0]%:*}
     syms[$sym]=$addr
@@ -47,10 +41,10 @@ while read line ; do
     toks=( $line )
     optok=${toks[0]^^}
     op=${OPS[$optok]}
-    argtok=${toks[1]:-$noarg}  # $noarg resolves to '' in the symbol table
-    sym=${syms[$argtok]}       # symbol?
-    lit=${sym:-$argtok}        # no? literal?
-    val=${lit:-0}              # no? no argument so use whatever (Ben used 0)
+    argtok=${toks[1]:- }  # resolves to '' in the symbol table
+    sym=${syms[$argtok]}  # symbol?
+    lit=${sym:-$argtok}   # no? literal?
+    val=${lit:-0}         # no? no argument so use whatever (Ben used 0)
     arg=${hex[$val]}
     image+='\x'"${hex[$((addr++))]}"  # address
     image+='\x'"$op$arg"              # command
